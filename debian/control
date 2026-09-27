@@ -1,0 +1,14 @@
+Source: scripturesstudio
+Section: python
+Priority: optional
+Maintainer: Reuben Institute <reubeninstitute@gmail.com>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.2
+
+Package: scripturesstudio
+Architecture: all
+Depends: ${misc:Depends}, python3, python3-flask, python3-markdown, python3-fonttools, python3-regex, python3-requests, python3-scriptures, python3-styledscriptures, styledscriptures-data, python3-mediatools, fonts, scripturesstudio-assets, audiobible
+Recommends: audiobible-shmueloff-source
+Description: Studio app for producing Reuben Institute's Psalms and Parashot video series
+ Flask app for editing Reuben Institute's Psalms and Parashot text,
+ audio timing, and covers, and exporting the video series from them.

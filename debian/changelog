@@ -1,0 +1,10 @@
+scripturesstudio (0.48) unstable; urgency=medium
+
+  * Switch packaging from packaging/deb/ (dpkg-deb --build) to a proper
+    debian/ source package (dpkg-buildpackage) with debhelper.
+  * Drop legacy audiobible-shmueloff-original, audiobible-shmueloff-darkknox2,
+    audiobible-darkknox2-english and audiobible-titles submodules and
+    dependencies; depend on audiobible instead, and recommend
+    audiobible-shmueloff-source for continued audio production work.
+
+ -- Reuben Institute <reubeninstitute@gmail.com>  Sun, 27 Sep 2026 11:12:00 +0300
