@@ -10,7 +10,7 @@ import io
 import os
 import csv
 from pathlib import Path
-from Asset import STATIC_FOLDER, TEMPLATES_FOLDER
+from Asset import ROOT, STATIC_FOLDER, TEMPLATES_FOLDER
 from Overlay import PsalmCover, ParashahCover, PsalmVerseSlide, PsalmVersePreview, ParashahVersePreview
 from Audio import PsalmAudio, ParashahAudio
 from Psalms import Psalms
@@ -125,7 +125,7 @@ def psalm(p):
 	psalm.load()
 	audio = AudioBible.get_instance()
 
-	template = open('descriptions.md', 'r', encoding='utf-8').read()
+	template = open(ROOT / 'descriptions.md', 'r', encoding='utf-8').read()
 	templates = {}
 	for match in re.finditer(r'##([^\n]+)\n([\s\S]*?)(?=(?:^##|\Z))', template, re.MULTILINE):
 		name = match.group(1).strip()

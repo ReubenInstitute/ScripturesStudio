@@ -8,9 +8,9 @@ from pathlib import Path
 from AudioBible import AudioBible
 from Audio import PsalmAudio
 
-ASSETS_FOLDER = "assets"
-OUTPUT_FOLDER = "output"
-BUILD_FOLDER = "build"
+ASSETS_FOLDER = Asset.ASSETS_FOLDER
+OUTPUT_FOLDER = Asset.OUTPUT_FOLDER
+BUILD_FOLDER = Asset.BUILD_FOLDER
 
 
 class Video(Asset.Asset):
@@ -201,7 +201,7 @@ class PsalmVideo(Video):
 	@property
 	def overlay(self):
 		duration = self.duration
-		title_image_path = f"build/images/psalms/{self.psalm.number:03d}_title.png"
+		title_image_path = os.path.join(BUILD_FOLDER, "images", "psalms", f"{self.psalm.number:03d}_title.png")
 		overlay = ffmpeg.input(title_image_path, loop=1, t=duration)
 		overlay = overlay.filter('scale', self.width, self.height)
 		overlay = overlay.filter('format', 'rgba')

@@ -13,22 +13,28 @@ INSTALLED = ROOT == Path("/usr/share/scripturesstudio")
 
 if INSTALLED:
 	SOURCE_AUDIO_FOLDER = Path("/usr/share/audiobible/source")
-	ORIGINAL_AUDIO_FOLDER = Path("/var/lib/audiobible/original")
-	CLONED_AUDIO_FOLDER = Path("/var/lib/audiobible/cloned")
-	ENGLISH_AUDIO_FOLDER = Path("/var/lib/audiobible/english")
+	ORIGINAL_AUDIO_FOLDER = Path("/usr/share/audiobible/shmueloff")
+	CLONED_AUDIO_FOLDER = Path("/usr/share/audiobible/shmueloff-darkknox2")
+	ENGLISH_AUDIO_FOLDER = Path("/usr/share/audiobible/english")
 	TITLES_AUDIO_FOLDER = Path("/var/lib/audiobible/titles")
+	ORIGINAL_CSV_FOLDER = Path("/var/lib/audiobible/original")
+	CLONED_CSV_FOLDER = Path("/var/lib/audiobible/cloned")
+	ENGLISH_CSV_FOLDER = Path("/var/lib/audiobible/english")
 else:
 	SOURCE_AUDIO_FOLDER = ROOT / "audio" / "shmueloff-source"
 	ORIGINAL_AUDIO_FOLDER = ROOT / "audio" / "shmueloff-original"
 	CLONED_AUDIO_FOLDER = ROOT / "audio" / "shmueloff-darkknox2"
 	ENGLISH_AUDIO_FOLDER = ROOT / "audio" / "darkknox2-english"
 	TITLES_AUDIO_FOLDER = ROOT / "audio" / "titles"
+	ORIGINAL_CSV_FOLDER = ORIGINAL_AUDIO_FOLDER
+	CLONED_CSV_FOLDER = CLONED_AUDIO_FOLDER
+	ENGLISH_CSV_FOLDER = ENGLISH_AUDIO_FOLDER
 
 TITLES_CSV = TITLES_AUDIO_FOLDER / "titles.csv"
-ORIGINAL_CSV = ORIGINAL_AUDIO_FOLDER / "original.csv"
-CLONED_CSV = CLONED_AUDIO_FOLDER / "cloned.csv"
-ENGLISH_CSV = ENGLISH_AUDIO_FOLDER / "english.csv"
-ALIGNMENT_CSV = CLONED_AUDIO_FOLDER / "alignment.csv"
+ORIGINAL_CSV = ORIGINAL_CSV_FOLDER / "original.csv"
+CLONED_CSV = CLONED_CSV_FOLDER / "cloned.csv"
+ENGLISH_CSV = ENGLISH_CSV_FOLDER / "english.csv"
+ALIGNMENT_CSV = CLONED_CSV_FOLDER / "alignment.csv"
 
 class AudioBible:
 	_instance = None
@@ -424,13 +430,13 @@ _load_timestamps()
 		return wav
 
 	def original_mp3(self, verse):
-		basename = f"{verse.chapter.book.number:03d}.{verse.chapter.number:03d}.{verse.number:03d}.mp3"
-		return ORIGINAL_AUDIO_FOLDER / basename
+		book, chapter, verse_num = verse.chapter.book.number, verse.chapter.number, verse.number
+		return ORIGINAL_AUDIO_FOLDER / f"{book:02d}" / f"{chapter:03d}" / f"{verse_num:03d}.mp3"
 
 	def cloned_mp3(self, verse):
-		basename = f"{verse.chapter.book.number:03d}.{verse.chapter.number:03d}.{verse.number:03d}.mp3"
-		return CLONED_AUDIO_FOLDER / basename
+		book, chapter, verse_num = verse.chapter.book.number, verse.chapter.number, verse.number
+		return CLONED_AUDIO_FOLDER / f"{book:02d}" / f"{chapter:03d}" / f"{verse_num:03d}.mp3"
 
 	def english_mp3(self, verse):
-		basename = f"{verse.chapter.book.number:03d}.{verse.chapter.number:03d}.{verse.number:03d}.mp3"
-		return ENGLISH_AUDIO_FOLDER / basename
+		book, chapter, verse_num = verse.chapter.book.number, verse.chapter.number, verse.number
+		return ENGLISH_AUDIO_FOLDER / f"{book:02d}" / f"{chapter:03d}" / f"{verse_num:03d}.mp3"

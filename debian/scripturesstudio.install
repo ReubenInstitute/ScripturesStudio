@@ -5,6 +5,7 @@ AudioBible.py usr/share/scripturesstudio
 Image.py usr/share/scripturesstudio
 Overlay.py usr/share/scripturesstudio
 Video.py usr/share/scripturesstudio
+descriptions.md usr/share/scripturesstudio
 audio.js usr/share/scripturesstudio/@@
 styles.css usr/share/scripturesstudio/@@
 logo.png usr/share/scripturesstudio/@@
